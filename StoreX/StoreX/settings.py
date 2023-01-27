@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,17 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Using aws access key id and secret access key
+# AWS_ACCESS_KEY_ID = 'Your Access Key'
+# AWS_SECRET_ACCESS_KEY = 'Your Secret Key'
+# AWS_STORAGE_BUCKET_NAME = 'Your Bucket Name'
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# Using aws session profile
+# AWS_S3_REGION_NAME = '<region_name>'
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
+# AWS_S3_SESSION_PROFILE_NAME = '<profile_name>'
