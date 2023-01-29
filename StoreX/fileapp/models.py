@@ -2,6 +2,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from storages.backends.s3boto3 import S3Boto3Storage # lib to use aws storage backend to store files
+from .validators import validators
 
 # Create your models here.
 
@@ -17,6 +18,6 @@ class MediaStorage(S3Boto3Storage):
 # User file model
 class File(models.Model):
     file_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='files/', storage=MediaStorage) # here we can use the mediastorage as our storage class
+    file = models.FileField(upload_to='files/', storage=MediaStorage, validators=validators) # here we can use the mediastorage as our storage class
     uploaded = models.DateTimeField(default=timezone.now)
     shared_with = models.ManyToManyField(User, related_name='shared_files', blank=True)
