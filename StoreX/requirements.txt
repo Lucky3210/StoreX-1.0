@@ -1,1 +1,3 @@
 pycryptodome
+boto3
+pillow

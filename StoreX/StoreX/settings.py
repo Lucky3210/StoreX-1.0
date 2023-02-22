@@ -38,8 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'fileapp.apps.FileappConfig',
     'storages',
+    'phonenumber_field',
 ]
+
+# we add the variable below to specify that we are not using the user model that django provides
+# so it goes to the fileapp app and enters the model file and then locate the User class
+AUTH_USER_MODEL = 'fileapp.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +63,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'
+            BASE_DIR, 'templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {

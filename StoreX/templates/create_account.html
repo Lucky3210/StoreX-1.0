@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../bootstrap_5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="create_acc.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="../images/logo.svg" alt="">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="{% url 'login' %}">Log in</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-cont">
+            <div class="head">
+                <h2>Create Account</h2>
+                <p><a href="{% url 'login' %}">Log in</a></p>
+            </div>
+            <form class="row g-2">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <label for="first_name" class="form-label">First name</label>
+                    <input type="text" class="form-control" placeholder="Enter first name" name="first_name"
+                        id="first_name">
+                </div>
+                <div class="col-md-12">
+                    <label for="last_name" class="form-label">Last name</label>
+                    <input type="text" class="form-control" placeholder="Enter last name" name="last_name"
+                        id="last_name">
+                </div>
+                <div class="col-md-12">
+                    <label for="phone" class="form-label">Phone no</label>
+                    <input type="text" class="form-control" placeholder="Enter phone number" name="phone" id="phone">
+                </div>
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter email" name="email" id="email">
+                </div>
+                <div class="col-md-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password" name="password"
+                        id="password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="agree">
+                    <label for="agree" class="form-check-label" style="font-size: 13px;">I agree to the <a
+                            href="#">StoreX Terms</a>, Fond out more about how we use and protect your data in our <a
+                            href="#">privacy policy</a></label>
+                </div>
+
+                <div class="col-12 btn">
+                    <button type="submit">Create an account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

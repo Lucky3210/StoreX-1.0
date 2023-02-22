@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../bootstrap_5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo"></div>
+        <div class="links">
+            <ul>
+                <li><a href="{% url 'register' %}">Create Account</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-cont">
+            <div class="head">
+                <h2>Log-in</h2>
+                <p><a href="{% url 'register' %}">Or Create an account</a></p>
+            </div>
+            <form method="post" class="row g-2">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter email" name="email" id="email">
+                </div>
+                <div class="col-md-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password" name="password"
+                        id="password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="Remember">
+                    <label for="Remember class=" form-check-label style="font-size: 13px;">Remember Me</label>
+                </div>
+                <div class="forgotten">
+                    <a href="#">Forgotten your password?</a>
+                </div>
+
+                <div class="col-12 btn">
+                    <button type="submit">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

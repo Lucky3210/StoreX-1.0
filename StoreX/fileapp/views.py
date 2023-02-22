@@ -1,11 +1,72 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import boto3
 from django.http import HttpResponse
 from Crypto.Cipher import AES
 import os
 import secrets
+from django.http import HttpResponse
+from .models import User
+from .forms import MyUserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Create your views here.
+
+
+def homePage(request):
+    # return HttpResponse("Let's go filing")
+    return render(request, 'home.html')
+
+
+def loginPage(request):
+
+    if request.user.is_authenticated:
+        return redirect('storePage')
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(email = email)
+        except:
+            messages.error(request, 'User not found, Proceed to register.')
+
+        user = authenticate(request, email = email, password = password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('storePage')
+        
+        else:
+            messages.error(request, 'Email or Password does not exist.')
+    return render(request, 'login.html')
+
+
+def registerPage(request):
+
+    form = MyUserCreationForm() # create an instance of the form created in forms.py
+
+    if request.method == 'POST':
+        form = MyUserCreationForm(request.POST) # the values filled in the form is placed in the post request
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.firstname = user.firstname.lower()
+            user.save()
+            login(request, user)
+            return redirect('storePage')
+
+        else:
+            messages.error(request, 'An error occured during registration')
+            form = MyUserCreationForm()
+        # firstname = request.POST("first_name")
+        # lastname = request.POST("last_name")
+        # phone_number = request.POST("phone")
+        # email = request.POST('email')
+    return render(request, 'register.html', {'form': form})
+
+def storePage(request):
+    return render(request, 'fileapp/store_home.html')
 
 
 def add_file(request):
